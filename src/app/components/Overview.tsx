@@ -46,7 +46,7 @@ export const Summary = ({ total, netchange }: SummaryProps) => {
     <div className="mt-3 flex content-center justify-between border-t-2 pt-4 text-dark-brown">
       <div>
         <p className="text-sm font-extralight">Total this month</p>
-        <p className="text-3xl font-extrabold">{total}</p>
+        <p className="text-3xl font-extrabold">$ {total}</p>
       </div>
       <div className="content-end text-right text-sm">
         <p className="font-medium">{getNetChangeAsStrg(netchange)}</p>
