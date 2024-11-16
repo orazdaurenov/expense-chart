@@ -32,7 +32,7 @@ const Chart = () => {
   const customChartConfig = {
     mobile: {
       label: "amount",
-      color: "red",
+      color: "hsl(10 79% 65%)",
     },
   } satisfies ChartConfig;
   function Component() {
@@ -44,7 +44,7 @@ const Chart = () => {
         >
           <BarChart accessibilityLayer data={data}>
             <ChartTooltip content={<ChartTooltipContent />} />
-            <Bar dataKey="amount" fill="var(--color-desktop)" radius={4} />
+            <Bar dataKey="amount" fill="var(--color-mobile)" radius={4} />
             <XAxis
               dataKey="day"
               tickLine={false}
