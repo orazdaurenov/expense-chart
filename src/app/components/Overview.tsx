@@ -36,15 +36,21 @@ type SummaryProps = {
 };
 
 export const Summary = ({ total, netchange }: SummaryProps) => {
+  function getNetChangeAsStrg(netchange: number) {
+    if (netchange < 0) {
+      return `${netchange * -1}%`;
+    }
+    return `+${netchange}%`;
+  }
   return (
-    <div>
+    <div className="mt-3 flex content-center justify-between border-t-2 pt-4 text-dark-brown">
       <div>
-        <p>Total this month</p>
-        <p>{total}</p>
+        <p className="text-sm font-extralight">Total this month</p>
+        <p className="text-3xl font-extrabold">{total}</p>
       </div>
-      <div>
-        <p>{netchange}</p>
-        <p>from last month</p>
+      <div className="content-end text-right text-sm">
+        <p className="font-medium">{getNetChangeAsStrg(netchange)}</p>
+        <p className="font-extralight">from last month</p>
       </div>
     </div>
   );
