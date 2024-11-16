@@ -1,6 +1,11 @@
 "use client";
 import React from "react";
-import { ChartConfig, ChartContainer } from "../../components/ui/chart";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "../../components/ui/chart";
 import { Bar, BarChart, XAxis } from "recharts";
 import { data } from "./data";
 const Chart = () => {
@@ -38,6 +43,7 @@ const Chart = () => {
           className="min-h-[300px] w-full"
         >
           <BarChart accessibilityLayer data={data}>
+            <ChartTooltip content={<ChartTooltipContent />} />
             <Bar dataKey="amount" fill="var(--color-desktop)" radius={4} />
             <XAxis
               dataKey="day"
