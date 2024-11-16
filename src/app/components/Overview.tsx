@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import Chart from "./Chart";
-
 const Overview = () => {
   return (
     <div className="rounded-lg bg-white p-5">
