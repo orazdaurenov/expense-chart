@@ -7,9 +7,15 @@ import {
 } from "../../components/ui/chart";
 import { Bar, BarChart, XAxis } from "recharts";
 import { data } from "./data";
+import { useRef } from "react";
+
 const Chart = () => {
+  const barRef = useRef(null);
+  function handleClick() {
+    console.table(barRef);
+  }
   const chartData = [
-    { month: "January", mobile: 80 },
+    { month: "January", mobile: 80, fill: "black" },
     { month: "February", mobile: 200 },
     { month: "March", mobile: 120 },
     { month: "April", mobile: 190 },
@@ -44,9 +50,11 @@ const Chart = () => {
           <BarChart accessibilityLayer data={data}>
             <ChartTooltip content={<ChartTooltipContent />} />
             <Bar
+              ref={barRef}
               dataKey="amount"
-              className="fill-[--color-mobile] hover:fill-blue-400"
+              className="hover:fill-hover-soft-red fill-[--color-mobile]"
               radius={4}
+              onClick={handleClick}
             />
             <XAxis
               dataKey="day"
@@ -69,3 +77,10 @@ const Chart = () => {
 };
 
 export default Chart;
+
+function getCurrentDay(): string {
+  const dayNames = ["sun", "mon", "tue", "wed", "thu", "wed", "fri", "sat"];
+  const date = new Date();
+  const day = date.getDay();
+  return dayNames[day] as string;
+}
