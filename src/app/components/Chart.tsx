@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import {
   ChartConfig,
   ChartContainer,
@@ -44,7 +43,11 @@ const Chart = () => {
         >
           <BarChart accessibilityLayer data={data}>
             <ChartTooltip content={<ChartTooltipContent />} />
-            <Bar dataKey="amount" fill="var(--color-mobile)" radius={4} />
+            <Bar
+              dataKey="amount"
+              className="fill-[--color-mobile] hover:fill-blue-400"
+              radius={4}
+            />
             <XAxis
               dataKey="day"
               tickLine={false}
