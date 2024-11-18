@@ -5,35 +5,10 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "../../components/ui/chart";
-import { Bar, BarChart, XAxis } from "recharts";
+import { Bar, BarChart, XAxis, Cell } from "recharts";
 import { data } from "./data";
-import { useRef } from "react";
 
 const Chart = () => {
-  const barRef = useRef(null);
-  function handleClick() {
-    console.table(barRef);
-  }
-  const chartData = [
-    { month: "January", mobile: 80, fill: "black" },
-    { month: "February", mobile: 200 },
-    { month: "March", mobile: 120 },
-    { month: "April", mobile: 190 },
-    { month: "May", mobile: 130 },
-    { month: "June", mobile: 140 },
-  ];
-
-  const chartConfig = {
-    desktop: {
-      label: "Desktop",
-      color: "#2563eb",
-    },
-    mobile: {
-      label: "Mobile",
-      color: "red",
-    },
-  } satisfies ChartConfig;
-
   const customChartConfig = {
     mobile: {
       label: "amount",
@@ -49,13 +24,26 @@ const Chart = () => {
         >
           <BarChart accessibilityLayer data={data}>
             <ChartTooltip content={<ChartTooltipContent />} />
-            <Bar
-              ref={barRef}
-              dataKey="amount"
-              className="hover:fill-hover-soft-red fill-[--color-mobile]"
-              radius={4}
-              onClick={handleClick}
-            />
+            <Bar dataKey="amount" radius={4}>
+              {" "}
+              {data.map((entry, index) => {
+                console.log(entry);
+                if (entry.day === getCurrentDay()) {
+                  return (
+                    <Cell
+                      key={`cell-${index}`}
+                      className="hover:fill-hover-custom-cyan fill-custom-cyan"
+                    />
+                  );
+                }
+                return (
+                  <Cell
+                    key={`cell-${index}`}
+                    className="fill-[--color-mobile] hover:fill-hover-soft-red"
+                  />
+                );
+              })}
+            </Bar>
             <XAxis
               dataKey="day"
               tickLine={false}
@@ -84,3 +72,16 @@ function getCurrentDay(): string {
   const day = date.getDay();
   return dayNames[day] as string;
 }
+
+  
+    
+  
+
+ 
+      
+        
+          
+          
+          
+          
+          
