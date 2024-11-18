@@ -1,6 +1,6 @@
 "use client";
 import {
-  ChartConfig,
+  type ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
@@ -32,7 +32,7 @@ const Chart = () => {
                   return (
                     <Cell
                       key={`cell-${index}`}
-                      className="hover:fill-hover-custom-cyan fill-custom-cyan"
+                      className="fill-custom-cyan hover:fill-hover-custom-cyan"
                     />
                   );
                 }
@@ -70,18 +70,5 @@ function getCurrentDay(): string {
   const dayNames = ["sun", "mon", "tue", "wed", "thu", "wed", "fri", "sat"];
   const date = new Date();
   const day = date.getDay();
-  return dayNames[day] as string;
+  return dayNames[day]!;
 }
-
-  
-    
-  
-
- 
-      
-        
-          
-          
-          
-          
-          
