@@ -1,6 +1,6 @@
 "use client";
 import {
-  ChartConfig,
+  type ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
@@ -14,25 +14,6 @@ const Chart = () => {
   function handleClick() {
     console.table(barRef);
   }
-  const chartData = [
-    { month: "January", mobile: 80, fill: "black" },
-    { month: "February", mobile: 200 },
-    { month: "March", mobile: 120 },
-    { month: "April", mobile: 190 },
-    { month: "May", mobile: 130 },
-    { month: "June", mobile: 140 },
-  ];
-
-  const chartConfig = {
-    desktop: {
-      label: "Desktop",
-      color: "#2563eb",
-    },
-    mobile: {
-      label: "Mobile",
-      color: "red",
-    },
-  } satisfies ChartConfig;
 
   const customChartConfig = {
     mobile: {
@@ -52,7 +33,7 @@ const Chart = () => {
             <Bar
               ref={barRef}
               dataKey="amount"
-              className="hover:fill-hover-soft-red fill-[--color-mobile]"
+              className="fill-[--color-mobile] hover:fill-hover-soft-red"
               radius={4}
               onClick={handleClick}
             />
@@ -82,5 +63,5 @@ function getCurrentDay(): string {
   const dayNames = ["sun", "mon", "tue", "wed", "thu", "wed", "fri", "sat"];
   const date = new Date();
   const day = date.getDay();
-  return dayNames[day] as string;
+  return dayNames[day]!;
 }
