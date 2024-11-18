@@ -5,16 +5,10 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "../../components/ui/chart";
-import { Bar, BarChart, XAxis } from "recharts";
+import { Bar, BarChart, XAxis, Cell } from "recharts";
 import { data } from "./data";
-import { useRef } from "react";
 
 const Chart = () => {
-  const barRef = useRef(null);
-  function handleClick() {
-    console.table(barRef);
-  }
-
   const customChartConfig = {
     mobile: {
       label: "amount",
@@ -30,13 +24,26 @@ const Chart = () => {
         >
           <BarChart accessibilityLayer data={data}>
             <ChartTooltip content={<ChartTooltipContent />} />
-            <Bar
-              ref={barRef}
-              dataKey="amount"
-              className="fill-[--color-mobile] hover:fill-hover-soft-red"
-              radius={4}
-              onClick={handleClick}
-            />
+            <Bar dataKey="amount" radius={4}>
+              {" "}
+              {data.map((entry, index) => {
+                console.log(entry);
+                if (entry.day === getCurrentDay()) {
+                  return (
+                    <Cell
+                      key={`cell-${index}`}
+                      className="fill-custom-cyan hover:fill-hover-custom-cyan"
+                    />
+                  );
+                }
+                return (
+                  <Cell
+                    key={`cell-${index}`}
+                    className="fill-[--color-mobile] hover:fill-hover-soft-red"
+                  />
+                );
+              })}
+            </Bar>
             <XAxis
               dataKey="day"
               tickLine={false}
